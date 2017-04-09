@@ -1,7 +1,7 @@
 # RikardLib.Concurrent
 Some concurrent helper classes
 
-# Usage of the ParallelCircleQueue<T>
+# Usage of the ParallelCircleQueue&lt;T&gt;
 ```cs
     class Program
     {
