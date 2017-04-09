@@ -11,9 +11,9 @@ Some concurrent helper classes
 
             var tasks = new[]
             {
-                Task.Factory.StartNew(() => ExampleTask<string>(pcq)),
-                Task.Factory.StartNew(() => ExampleTask<string>(pcq)),
-                Task.Factory.StartNew(() => ExampleTask<string>(pcq))
+                Task.Factory.StartNew(() => ExampleTask(pcq)),
+                Task.Factory.StartNew(() => ExampleTask(pcq)),
+                Task.Factory.StartNew(() => ExampleTask(pcq))
             };
 
             Task.WaitAll(tasks);
