@@ -71,3 +71,40 @@ Some concurrent helper classes
         }
     }
 ```
+
+# Usage of the ParallelWorker
+```cs
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var pw = new ParallelWorker(threadsNum: 5);
+
+            var tasks = new[]
+            {
+                Task.Factory.StartNew(() => ExampleTask(pw)),
+                Task.Factory.StartNew(() => ExampleTask(pw)),
+                Task.Factory.StartNew(() => ExampleTask(pw))
+            };
+
+            Task.WaitAll(tasks);
+
+            Console.WriteLine("ParallelWorker proceedes in the background. Press enter to wait all worker threads are done.");
+            Console.ReadLine();
+
+            pw.WaitWorkDone();
+        }
+
+        static void ExampleTask(ParallelWorker pw)
+        {
+            var rnd = new Random();
+
+            foreach(var n in Enumerable.Range(1, 100))
+            {
+                pw.AddWork(() => { Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId} : {n}"); Thread.Sleep(1000); });
+            }
+
+            Thread.Sleep(3000);
+        }
+    }
+```
