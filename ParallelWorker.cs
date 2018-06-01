@@ -235,10 +235,11 @@ namespace RikardLib.Concurrent
             {
                 this.threadId = threadId;
                 this.main = main;
+                this.log = log;
+                
                 this.thread = new Thread(Work);
                 this.thread.IsBackground = true;
                 this.thread.Start();
-                this.log = log;
             }
 
             public void WaitWorkDone()
